@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="network_providers">
+        <item >---Select item---</item>
+        <item >Airtel</item>
+        <item >Glo</item>
+        <item >MTN</item>
+        <item >9Mobile</item>
+    </string-array>
+
+    <string-array name="bundle_types">
+        <item >---Select item---</item>
+        <item >Giftings</item>
+        <item >Coporate giftings</item>
+        <item >SME-</item>
+    </string-array>
+
+    <string-array name="bundle_amounts">
+        <item >---Select item---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+    </string-array>
+
+    <string-array name="electricity_company">
+        <item >---Select item---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+    </string-array>
+
+    <string-array name="meter_type">
+        <item >---Select item---</item>
+        <item >---Prepaid---</item>
+        <item >---Postpaid---</item>
+        <item >---From server---</item>
+        <item >---From server---</item>
+    </string-array>
+    
+    <string-array name="airtime_types">
+        <item>VTU</item>
+    </string-array>
+</resources>

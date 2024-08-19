@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activity_bg1"
+    tools:context=".DashboardActivity">
+    
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F8EEEC"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="8dp">
+                        
+                        <ImageView
+                            android:id="@+id/dashboardBG"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/appbar_scrolling_view_behavior"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/top_background" />
+                        
+                        <TextView
+                            android:id="@+id/dashboardGreetings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:paddingTop="24dp"
+                            android:text="Hello,"
+                            android:textColor="#ffffff"
+                            android:textSize="24sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toTopOf="@+id/dashboardName"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        
+                        <TextView
+                            android:id="@+id/Logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toTopOf="@+id/dashboardName"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.95"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.6"
+                            android:text="Logout"
+                            android:textColor="#f4f4f4"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                        
+                        <TextView
+                            android:id="@+id/dashboardName"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="32dp"
+                            android:text="Hezekiah Sola"
+                            android:textColor="#ffffff"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/dashboardBG"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.123"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dashboardGreetings" />
+                        
+                        
+                        <TextView
+                            android:id="@+id/dashboardWalletBallanceTextText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="120dp"
+                            android:gravity="center_horizontal"
+                            android:text="Wallet ballance:"
+                            android:textColor="#ffffff"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        
+                        <TextView
+                            android:id="@+id/dashboardWalletBallance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="150dp"
+                            android:gravity="center_horizontal"
+                            android:text="9637.81"
+                            android:textSize="32sp"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="@drawable/white_bg"
+                            android:elevation="3dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="@+id/dashboardBG"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dashboardBG">
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxFundWallet"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:layout_weight="0.333"
+                                android:background="@drawable/brown_bg"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true">
+                                
+                                <ImageView
+                                    android:id="@+id/imageViewImageFundWallet"
+                                    android:contentDescription="Fund wallet"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="8dp"
+                                    app:srcCompat="@drawable/btn_wallet" />
+                                
+                                <TextView
+                                    android:id="@+id/textViewTextFundWallet"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="Fund wallet"
+                                    android:textAlignment="center"
+                                    android:textColor="#C77710"
+                                    android:textStyle="italic|bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxTransactionHistory"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:layout_weight="0.333"
+                                android:background="@drawable/brown_bg"
+                                android:orientation="vertical">
+                                
+                                <ImageView
+                                    android:id="@+id/imageViewTransactionHistory"
+                                    android:contentDescription="View transaction history"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="8dp"
+                                    app:srcCompat="@drawable/btn_transaction_history" />
+                                
+                                <TextView
+                                    android:id="@+id/textViewTransactionHistory"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    
+                                    android:text="Transaction\nhistory"
+                                    android:textAlignment="center"
+                                    android:textColor="#C77710"
+                                    android:textStyle="italic|bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxContactSupport"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:layout_weight="0.333"
+                                android:background="@drawable/brown_bg"
+                                android:orientation="vertical">
+                                
+                                <ImageView
+                                    android:id="@+id/imageViewContactSupport"
+                                    android:layout_width="match_parent"
+                                    android:contentDescription="@string/appbar_scrolling_view_behavior"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="8dp"
+                                    app:srcCompat="@drawable/btn_support" />
+                                
+                                <TextView
+                                    android:id="@+id/textViewContactSupport"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="Contact us"
+                                    android:textAlignment="center"
+                                    android:textColor="#C77710"
+                                    android:textStyle="italic|bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnBoxUpgradeAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/back_banner">
+                        
+                        <ImageView
+                            android:id="@+id/imageViewUpgradeAccount"
+                            android:contentDescription="Upgrade your account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/logo" />
+                        
+                        <TextView
+                            android:id="@+id/textViewUpgradeAccount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upgrade Your Account"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageViewUpgradeAccount"
+                            app:layout_constraintEnd_toStartOf="@+id/imageViewUpgradeAccount"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imageViewUpgradeAccount" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
+                        
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxAirtimeTopup"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewAirtimeTopup"
+                                        android:contentDescription="Airtime top up"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/btn_airtime_topup" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewAirtimeTopup"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Airtime\ntop up"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxBuyData"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewBuyData"
+                                        android:layout_width="wrap_content"
+                                        android:contentDescription="Buy data bundles"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/data1" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewBuyData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Buy\ndata"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxElectricity"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewElectricity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="50dp"
+                                        android:contentDescription="Pay electricity bills"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/btn_electricity_bills" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewElectricity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Electricity\nbills"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxCableTVSub"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewCableTVSub"
+                                        android:layout_width="wrap_content"
+                                        android:contentDescription="Cable TV subscription"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/tv" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewCableTvSub"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Cable TV\nSubscription"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxBuyDataCard"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="88dp"
+                                    android:layout_height="86dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewBuyDataCard"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        android:contentDescription="Buy data card"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/btn_data1" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewBuyDataCard"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Data\nCard"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxEducationBills"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewEducationBills"
+                                        android:layout_width="wrap_content"
+                                        android:contentDescription="Pay educational fees"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/btn_education" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewEducationBills"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Education\npayments"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxRewardCenter"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewImageReward"
+                                        android:contentDescription="Reward center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/btn_reward1" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewTextReward"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Reward\ncenter"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                            
+                            <LinearLayout
+                                android:id="@+id/btnBoxOther"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.25"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
+                                
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/white_bg">
+                                    
+                                    <ImageView
+                                        android:id="@+id/imageViewOther"
+                                        android:contentDescription="More options"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="50dp"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/ic_8" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                
+                                <TextView
+                                    android:id="@+id/textViewOther"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Other"
+                                    android:textAlignment="center"
+                                    android:textColor="#2E3D6D"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                
+                </LinearLayout>
+            </ScrollView>
+        
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    </FrameLayout>
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8EEEC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/buttom_nav"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

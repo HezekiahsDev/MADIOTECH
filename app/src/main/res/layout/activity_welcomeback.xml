@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0c0a32"
+    tools:context=".WelcomeBackActivity">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="52dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView
+                android:id="@+id/welcomeBackGreeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="128dp"
+                android:layout_marginRight="30dp"
+                android:text="Welcome back"
+                android:textColor="#f4f4f4"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+            
+            <TextView
+                android:id="@+id/welcomBackUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="30dp"
+                android:text="Hezekiah"
+                android:textColor="#f4f4f4"
+                android:textSize="24sp"
+                android:textStyle="normal" />
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:text="Please enter password to continue"
+                android:textColor="#00a99d"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            
+            <EditText
+                android:id="@+id/editTextLoginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:autofillHints="password"
+                android:background="@drawable/edittext_bg"
+                android:drawableStart="@drawable/password"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColorHint="#756c60"
+                android:textColor="#0b0b0b"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            
+            
+            <TextView
+                android:id="@+id/textViewClickableForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:text="Forgot Password"
+                android:textColor="#3B608C"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            
+            <ImageView
+                android:id="@+id/imageViewLoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="32dp"
+                android:src="@drawable/btn_arrow2" />
+            
+            <TextView
+                android:id="@+id/textViewClickableRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:text="Don't Have an account? Register"
+                android:textAlignment="center"
+                android:textColor="#3B608C"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#0c0a32"
+	tools:context=".ForgotActivity">
+	
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:contentDescription="@string/app_name"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent">
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+			
+			<TextView
+				android:id="@+id/welcomeBackGreeting"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="30dp"
+				android:layout_marginRight="30dp"
+				android:layout_marginTop="128dp"
+				android:text="Resset password"
+				android:textSize="32sp"
+				android:textStyle="bold"
+				android:textColor="#f4f4f4"/>
+			
+			
+			
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="32dp"
+				android:layout_marginEnd="32dp"
+				android:layout_marginTop="64dp"
+				android:text="Please enter OTP to continue"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:textColor="#f4f4c2"
+				/>
+			
+			<EditText
+				android:id="@+id/editTextConfirmOTP"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:layout_marginStart="32dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="32dp"
+				android:background="@drawable/edittext_bg"
+				android:drawableStart="@drawable/password"
+				android:drawablePadding="10dp"
+				android:ems="10"
+				android:hint="Please enter OTP sent to your email"
+				android:inputType="textPassword"
+				android:padding="10dp"
+				android:textColorHint="#756c60" />
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="32dp"
+				android:layout_marginEnd="32dp"
+				android:layout_marginTop="12dp"
+				android:text="Resend OTP"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:textColor="#00a99d"
+				/>
+			
+			
+			<ImageView
+				android:id="@+id/imageViewLoginButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:layout_marginTop="32dp"
+				android:layout_marginEnd="32dp"
+				android:src="@drawable/btn_arrow2"/>
+		
+		</LinearLayout>
+	</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

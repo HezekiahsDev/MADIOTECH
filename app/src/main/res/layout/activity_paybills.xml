@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activity_bg1"
+    tools:context=".AirtimeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo_moto"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp"
+                android:text="Pay Electricity Bills"
+                android:textColor="#3B608C"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerElectricityCompany"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/spinner_background"
+                android:backgroundTint="@color/cardview_dark_background"
+                android:spinnerMode="dropdown"
+
+                />
+
+            <Spinner
+                android:id="@+id/spinnerMeterType"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/spinner_background"
+                android:backgroundTint="@color/cardview_dark_background" />
+
+            <EditText
+                android:id="@+id/editTextAirtimeAmount"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp"
+                android:hint="Amount (Should be 1000.00 above)"
+                android:inputType="numberDecimal"
+                android:textColorHint="#756c60"
+                android:background="@drawable/box_bg"/>
+
+            <EditText
+                android:id="@+id/editTextMeterNumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp"
+                android:hint="Meter number (required)"
+                android:inputType="phone"
+                android:textColorHint="#756c60"
+                android:background="@drawable/box_bg"/>
+
+            <EditText
+                android:id="@+id/editTextmeterPhonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp"
+                android:hint="Phone number (to get token)"
+                android:inputType="phone"
+                android:textColorHint="#756c60"
+                android:background="@drawable/box_bg"/>
+
+            <Button
+                android:id="@+id/textViewProceedPurchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/background_banner"
+                android:text="Proceed purchase"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewResolveIssues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Resolve issues"
+                android:textAlignment="center"
+                android:textColor="#3B608C"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
