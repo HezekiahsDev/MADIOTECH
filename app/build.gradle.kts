@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.example.madiotech"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.madiotech"
@@ -31,6 +31,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildToolsVersion = "35.0.1"
 }
 
 
@@ -40,11 +41,15 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-//    implementation(files("C:\\Program Files\\Android\\gradle-8.5-all\\gradle-8.5\\lib\\retrofit-2.9.0.jar"))
-//    implementation(files("C:\\Program Files\\Android\\gradle-8.5-all\\gradle-8.5\\lib\\security-crypto-1.1.0-alpha06.aar"))
-//    implementation(files("C:\\Program Files\\Android\\gradle-8.5-all\\gradle-8.5\\lib\\gson-2.10.1.jar"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Retrofit for networking
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Encrypted SharedPreferences
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 
 }
