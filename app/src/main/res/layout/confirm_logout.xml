@@ -5,6 +5,7 @@
     android:layout_height="240dp"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="@dimen/padding_large"
     app:cardCornerRadius="32dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp">
@@ -12,11 +13,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:background="#f4f4f4">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="96dp"
+            android:layout_width="64dp"
             android:layout_height="96dp"
             android:src="@drawable/caution1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,10 +32,10 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:padding="@dimen/margin_medium"
             android:text="Are you sure you want to logout?"
             android:textColor="#0c0a32"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.5"
@@ -43,6 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:orientation="horizontal"
@@ -54,29 +57,29 @@
             app:layout_constraintVertical_bias="0.636">
             
             <Button
-                android:id="@+id/buttonconfirmLogoutGoBack"
+                android:id="@+id/buttonConfirmLogoutGoBack"
                 android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_grey_bg"
                 android:text="Go back"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
-            
+
             <Button
-                android:id="@+id/buttonconfirmLogout"
+                android:id="@+id/buttonConfirmLogout"
                 android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_red_bg"
                 android:text="Log out"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold"/>
         
         </LinearLayout>

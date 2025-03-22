@@ -1,10 +1,14 @@
-package com.example.madiotech;
+package com.example.madiotech.api;
+
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("api/user/login.php")
+    @POST("user/login.php")
     Call<LoginResponse> loginUser(@Body LoginRequest request);
+    @POST("api/user/register.php")
+    Call<String> registerUser(@Body RegisterRequest request);
+
 }

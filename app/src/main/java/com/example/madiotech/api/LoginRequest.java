@@ -1,4 +1,4 @@
-package com.example.madiotech;
+package com.example.madiotech.api;
 
 public class LoginRequest {
     private String username;

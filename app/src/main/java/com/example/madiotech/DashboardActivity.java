@@ -1,116 +1,97 @@
 package com.example.madiotech;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import java.util.Locale;
+
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.madiotech.api.LoginResponse;
 
 public class DashboardActivity extends BaseActivity {
 
-    private TextView dashboardName;
-    private TextView logoutTextView;
-    private TextView dashboardWalletBalance;
-    private TextView accountLevelTextView;
-    private LinearLayout btnBoxAirtimeTopup;
-    private LinearLayout btnBoxBuyData;
-    private LinearLayout btnBoxFundWallet;
-
-    private static final String PREFS_NAME = "LoginPrefs";
-    private static final String KEY_USERNAME = "username";
+    private TextView dashboardName, dashboardWalletBalance, accountLevelTextView, logoutTextView;
+    private LinearLayout btnBoxAirtimeTopup, btnBoxBuyData, btnBoxFundWallet;
+    private UserViewModel userViewModel; // ViewModel to fetch user data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Find the views by ID
+        // Find views
         dashboardName = findViewById(R.id.dashboardName);
-        logoutTextView = findViewById(R.id.Logout); // Correct initialization
+        logoutTextView = findViewById(R.id.Logout);
         dashboardWalletBalance = findViewById(R.id.dashboardWalletBallance);
         accountLevelTextView = findViewById(R.id.textViewUpgradeAccount);
         btnBoxAirtimeTopup = findViewById(R.id.btnBoxAirtimeTopup);
         btnBoxBuyData = findViewById(R.id.btnBoxBuyData);
         btnBoxFundWallet = findViewById(R.id.btnBoxFundWallet);
 
-        // Retrieve the username from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String username = sharedPreferences.getString(KEY_USERNAME, "User");
-        dashboardName.setText(username);
+        // Initialize ViewModel
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
-        // Retrieve the wallet balance for the user
-        double walletBalance = getWalletBalance(username);
-        // Update the TextView with the retrieved balance
-        dashboardWalletBalance.setText(String.format(Locale.getDefault(), "%.2f", walletBalance));
-
-        // Retrieve the user account level
-        String accountLevel = getAccountLevel(username);
-        accountLevelTextView.setText(String.format("Upgrade Your Account\n(Current Level: %s)", accountLevel));
+        // Observe user data from Room
+        userViewModel.getUser().observe(this, new Observer<LoginResponse>() {
+            @Override
+            public void onChanged(LoginResponse user) {
+                if (user != null) {
+                    dashboardName.setText(user.getUsername());
+                    dashboardWalletBalance.setText(user.getWallet());
+                    accountLevelTextView.setText(String.format("Upgrade Your Account\n(Current Level: %s)", user.getUserLevel()));
+                }
+            }
+        });
 
         // Set OnClickListeners
-        // Set OnClickListener for the Logout button
-        logoutTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleLogout();
-            }
-        });
+        logoutTextView.setOnClickListener(v -> showLogoutDialog()); // Updated this line!
 
-        // Set OnClickListener for btnBoxAirtimeTopup
-        btnBoxFundWallet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, FundwalletActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Set OnClickListener for btnBoxAirtimeTopup
-        btnBoxAirtimeTopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, AirtimeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Set OnClickListener for btnBoxAirtimeTopup
-        btnBoxBuyData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, BuyDataActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        btnBoxFundWallet.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, FundwalletActivity.class)));
+        btnBoxAirtimeTopup.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, AirtimeActivity.class)));
+        btnBoxBuyData.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, BuyDataActivity.class)));
     }
 
-    // Functions
-    private double getWalletBalance(String username) {
-        // Retrieve wallet balance from DB
-        // Query DB through API endpoint
-        return 100000; // Assumed value for demonstration
-    }
+    private void showLogoutDialog() {
+        // Inflate the custom layout
+        View dialogView = getLayoutInflater().inflate(R.layout.confirm_logout, null);
 
-    private String getAccountLevel(String username) {
-        // Simulate server retrieval with a dummy value
-        // In a real application, perform a network request or query your database
-        return "Reseller"; // Assumed value for demonstration
+        // Create the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // Make background transparent
+        dialog.show();
+
+        // Find buttons inside the dialog
+        Button btnGoBack = dialogView.findViewById(R.id.buttonConfirmLogoutGoBack);
+        Button btnLogout = dialogView.findViewById(R.id.buttonConfirmLogout);
+
+        // Handle "Go Back" button
+        btnGoBack.setOnClickListener(v -> dialog.dismiss());
+
+        // Handle "Log Out" button
+        btnLogout.setOnClickListener(v -> {
+            dialog.dismiss();
+            handleLogout(); // Call logout method after closing dialog
+        });
     }
 
     private void handleLogout() {
-        // Clear login session and username from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
+        // Clear user data from Room
+        new Thread(() -> {
+            AppDatabase.getInstance(getApplicationContext()).userDao().deleteAllUsers();
+        }).start();
 
         // Start the MainActivity
-        Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish(); // Optionally finish the DashboardActivity
+        startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+        finish();
     }
 }
