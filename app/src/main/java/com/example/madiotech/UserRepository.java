@@ -34,16 +34,22 @@ public class UserRepository {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    new InsertUserTask(userDao).execute(response.body());
-                    callback.onSuccess(response.body());
+                    LoginResponse loginResponse = response.body();
+
+                    if ("success".equalsIgnoreCase(loginResponse.getStatus())) {
+                        new InsertUserTask(userDao).execute(loginResponse);
+                        callback.onSuccess(loginResponse);
+                    } else {
+                        callback.onFailure(loginResponse.getMessage()); // Use the API error message
+                    }
                 } else {
-                    callback.onFailure("Invalid Credentials");
+                    callback.onFailure("Incorrect Username or Password. Try again!"); // Standard error message
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                callback.onFailure(t.getMessage());
+                callback.onFailure("Network error. Please check your connection."); // More user-friendly
             }
         });
     }

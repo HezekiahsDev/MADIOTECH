@@ -29,7 +29,10 @@ public class LoginViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(String error) {
-                loginResult.postValue(null);
+                LoginResponse errorResponse = new LoginResponse();
+                errorResponse.setStatus("failed");
+                errorResponse.setMessage(error);
+                loginResult.postValue(errorResponse);
             }
         });
     }

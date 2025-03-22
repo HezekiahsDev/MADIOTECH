@@ -26,12 +26,13 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v -> handleLogin());
 
         loginViewModel.getLoginResult().observe(this, loginResponse -> {
-            if (loginResponse != null) {
+            if (loginResponse != null && "success".equalsIgnoreCase(loginResponse.getStatus())) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, DashboardActivity.class));
                 finish();
             } else {
-                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+                String errorMessage = (loginResponse != null) ? loginResponse.getMessage() : "Login failed. Please try again.";
+                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -39,6 +40,19 @@ public class LoginActivity extends AppCompatActivity {
     private void handleLogin() {
         String username = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
+
+        if (username.isEmpty()) {
+            usernameEditText.setError("Username is required");
+            usernameEditText.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            passwordEditText.setError("Password is required");
+            passwordEditText.requestFocus();
+            return;
+        }
+
         loginViewModel.login(username, password);
     }
 }
