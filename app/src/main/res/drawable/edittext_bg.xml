@@ -2,8 +2,23 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="8dp"/>
-            <solid android:color="#ffebcb"/>
+            <!-- Gray background -->
+
+
+            <!-- Border -->
+            <stroke
+                android:width="2dp"
+                android:color="#A9A9A9" /> <!-- Darker gray for stroke -->
+
+            <!-- Rounded corners -->
+            <corners android:radius="8dp" />
+
+            <!-- Padding inside the shape if needed -->
+            <padding
+                android:left="12dp"
+                android:top="10dp"
+                android:right="12dp"
+                android:bottom="10dp" />
         </shape>
     </item>
 </selector>

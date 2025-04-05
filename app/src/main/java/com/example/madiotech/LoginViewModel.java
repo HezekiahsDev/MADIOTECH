@@ -8,8 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.madiotech.api.LoginResponse;
 
 public class LoginViewModel extends AndroidViewModel {
-    private UserRepository userRepository;
-    private MutableLiveData<LoginResponse> loginResult = new MutableLiveData<>();
+    private final UserRepository userRepository;
+    private final MutableLiveData<LoginResponse> loginResult = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
 
     public LoginViewModel(Application application) {
         super(application);
@@ -20,7 +21,18 @@ public class LoginViewModel extends AndroidViewModel {
         return loginResult;
     }
 
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading.setValue(loading);
+    }
+
     public void login(String username, String password) {
+        // Set loading state to true when login starts
+        isLoading.setValue(true);
+
         userRepository.loginUser(username, password, new UserRepository.LoginCallback() {
             @Override
             public void onSuccess(LoginResponse user) {
@@ -31,6 +43,8 @@ public class LoginViewModel extends AndroidViewModel {
                 new Thread(() -> AppDatabase.getInstance(getApplication()).userDao().insertUser(user)).start();
 
                 loginResult.postValue(user);
+                // Note: We don't set isLoading to false here because
+                // that will be handled in the Activity after observing the result
             }
 
             @Override
@@ -39,6 +53,8 @@ public class LoginViewModel extends AndroidViewModel {
                 errorResponse.setStatus("failed");
                 errorResponse.setMessage(error);
                 loginResult.postValue(errorResponse);
+                // Note: We don't set isLoading to false here because
+                // that will be handled in the Activity after observing the result
             }
         });
     }

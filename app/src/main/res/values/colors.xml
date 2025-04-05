@@ -5,10 +5,10 @@
     <color name="white">#FFFFFF</color>
 
     <!-- Brand Colors -->
-    <color name="primary_blue">#4C6184</color>
-    <color name="dark_blue">#2E3D55</color>
-    <color name="accent_gold">#F9C177</color>
-    <color name="soft_gold">#F9C177</color>
+    <color name="primary_blue">#3B4D75</color> <!-- Richer, deeper blue -->
+    <color name="dark_blue">#1F2A44</color>    <!-- Almost navy -->
+    <color name="accent_gold">#D9A441</color>  <!-- Deeper gold -->
+    <color name="soft_gold">#F3CC7C</color>    <!-- Muted soft gold -->
 
     <!-- Material Design Colors -->
     <color name="colorPrimary">@color/primary_blue</color>
@@ -16,12 +16,12 @@
     <color name="colorSecondary">@color/accent_gold</color>
 
     <!-- UI Colors -->
-    <color name="colorBackground">@color/white</color>
-    <color name="colorSurface">@color/white</color>
+    <color name="colorBackground">#F8F9FB</color>   <!-- Off-white background -->
+    <color name="colorSurface">#F1F3F6</color>      <!-- Light surface elevation -->
 
     <!-- Text Colors -->
-    <color name="colorOnPrimary">@color/white</color>
-    <color name="colorOnSecondary">@color/black</color>
-    <color name="colorOnBackground">@color/black</color>
-    <color name="colorOnSurface">@color/black</color>
+    <color name="colorOnPrimary">#FFFFFF</color>     <!-- White text on primary -->
+    <color name="colorOnSecondary">#1F2A44</color>   <!-- Very dark text on gold -->
+    <color name="colorOnBackground">#1C1C1C</color>  <!-- Almost black for readability -->
+    <color name="colorOnSurface">#2E2E2E</color>     <!-- Dark gray for subtler contrast -->
 </resources>
