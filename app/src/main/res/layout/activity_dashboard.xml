@@ -110,7 +110,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
                             android:gravity="center_horizontal"
-                            android:text="9637.81"
+                            android:text=""
                             android:textColor="@android:color/white"
                             android:textSize="22sp"
                             android:textStyle="bold"
@@ -138,7 +138,7 @@
 
                             <!-- Fund Wallet Button -->
                             <LinearLayout
-                                android:id="@+id/btnBoxFundWallet"
+                                android:id="@+id/cardFundWallet"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_margin="@dimen/margin_medium"
@@ -277,363 +277,378 @@
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <!-- Services Grid -->
-                    <LinearLayout
+                    <!-- Services Title -->
+                    <TextView
+                        android:id="@+id/textViewServicesTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Services"
+                        android:textColor="@color/colorPrimaryVariant"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/margin_xxlarge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:paddingHorizontal="@dimen/padding_medium"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <!-- Services Grid using GridLayout -->
+                    <androidx.gridlayout.widget.GridLayout
+                        android:id="@+id/servicesGridLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_medium"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:layout_marginEnd="@dimen/margin_medium"
-                        android:layout_marginBottom="@dimen/margin_large"
-                        android:orientation="vertical">
+                        android:layout_marginTop="@dimen/margin_medium"
+                        app:columnCount="4"
+                        app:layout_constraintTop_toBottomOf="@id/textViewServicesTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
 
-                        <!-- First Row of Services -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <!-- Airtime Top Up -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardAirtimeTopup"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:baselineAligned="false"
-                            android:orientation="horizontal"
-                            android:weightSum="4">
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
 
-                            <!-- Airtime Top Up -->
                             <LinearLayout
-                                android:id="@+id/btnBoxAirtimeTopup"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_medium"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardElevation="2dp">
-
-                                    <ImageView
-                                        android:id="@+id/imageViewAirtimeTopup"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Airtime top up"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/btn_airtime_topup" />
-                                </androidx.cardview.widget.CardView>
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/btn_airtime_topup"
+                                  />
 
                                 <TextView
-                                    android:id="@+id/textViewAirtimeTopup"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
                                     android:text="Airtime\ntop up"
-                                    android:textColor="#2E3D6D"
-                                    android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textColor="@color/colorPrimaryVariant"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/text_size_small" />
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Buy Data -->
+                        <!-- Buy Data -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardBuyData"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
+
                             <LinearLayout
-                                android:id="@+id/btnBoxBuyData"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
 
-                                    <ImageView
-                                        android:id="@+id/imageViewBuyData"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Buy data bundles"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/data1" />
-                                </androidx.cardview.widget.CardView>
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/data1"
+                               />
 
                                 <TextView
-                                    android:id="@+id/textViewBuyData"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
                                     android:text="Buy\ndata"
-                                    android:textColor="#2E3D6D"
-                                    android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorPrimaryVariant"
+                                    android:textSize="@dimen/text_size_small" />
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Electricity Bills -->
+                        <!-- Electricity Bills -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardElectricity"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
+
                             <LinearLayout
-                                android:id="@+id/btnBoxElectricity"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
 
-                                    <ImageView
-                                        android:id="@+id/imageViewElectricity"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Pay electricity bills"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/btn_electricity_bills" />
-                                </androidx.cardview.widget.CardView>
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/btn_electricity_bills"
+                                />
 
                                 <TextView
-                                    android:id="@+id/textViewElectricity"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
                                     android:text="Electricity\nbills"
-                                    android:textColor="#2E3D6D"
+                                    android:textColor="@color/colorPrimaryVariant"
                                     android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"/>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Cable TV -->
+                        <!-- Cable TV -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardCableTVSub"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
+
                             <LinearLayout
-                                android:id="@+id/btnBoxCableTVSub"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
 
-                                    <ImageView
-                                        android:id="@+id/imageViewCableTVSub"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Cable TV subscription"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/tv" />
-                                </androidx.cardview.widget.CardView>
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/tv"
+                                  />
 
                                 <TextView
-                                    android:id="@+id/textViewCableTvSub"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
-                                    android:text="Cable TV\nSubscription"
-                                    android:textColor="#2E3D6D"
+                                    android:text="Cable\nTV"
+                                    android:textColor="@color/colorPrimaryVariant"
                                     android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"/>
                             </LinearLayout>
-                        </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Second Row of Services -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <!-- Data Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardBuyDataCard"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:baselineAligned="false"
-                            android:orientation="horizontal"
-                            android:weightSum="4">
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
 
-                            <!-- Data Card -->
                             <LinearLayout
-                                android:id="@+id/btnBoxBuyDataCard"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
 
-                                    <ImageView
-                                        android:id="@+id/imageViewBuyDataCard"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Buy data card"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/btn_data1" />
-                                </androidx.cardview.widget.CardView>
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/btn_data1"
+                              />
 
                                 <TextView
-                                    android:id="@+id/textViewBuyDataCard"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
                                     android:text="Data\nCard"
-                                    android:textColor="#2E3D6D"
+                                    android:textColor="@color/colorPrimaryVariant"
                                     android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"/>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Education Bills -->
+                        <!-- Education Bills -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardEducationBills"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
+
                             <LinearLayout
-                                android:id="@+id/btnBoxEducationBills"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
-
-                                    <ImageView
-                                        android:id="@+id/imageViewEducationBills"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Pay educational fees"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/btn_education" />
-                                </androidx.cardview.widget.CardView>
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/btn_education"
+                     />
 
                                 <TextView
-                                    android:id="@+id/textViewEducationBills"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
                                     android:text="Education\npayments"
-                                    android:textColor="#2E3D6D"
+                                    android:textColor="@color/colorPrimaryVariant"
                                     android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"/>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Reward Center -->
+                        <!-- Reward Center -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardRewardCenter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
+
                             <LinearLayout
-                                android:id="@+id/btnBoxRewardCenter"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
-
-                                    <ImageView
-                                        android:id="@+id/imageViewImageReward"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="Reward center"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/btn_reward1" />
-                                </androidx.cardview.widget.CardView>
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/btn_reward1" />
 
                                 <TextView
-                                    android:id="@+id/textViewTextReward"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
                                     android:text="Reward\ncenter"
-                                    android:textColor="#2E3D6D"
+                                    android:textColor="@color/colorPrimaryVariant"
                                     android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"/>
                             </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Other -->
+                        <!-- More Options -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardMoreOptions"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/colorSurface"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            app:layout_columnWeight="1"
+                            app:rippleColor="@color/primary_blue"
+                            app:strokeColor="@color/dark_blue"
+                            app:strokeWidth="1dp">
+
                             <LinearLayout
-                                android:id="@+id/btnBoxOther"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/margin_medium">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/margin_small"
-                                    app:cardCornerRadius="12dp"
-                                    app:cardBackgroundColor="@color/dark_blue"
-                                    app:cardElevation="2dp">
-
-                                    <ImageView
-                                        android:id="@+id/imageViewOther"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="48dp"
-                                        android:layout_margin="@dimen/margin_medium"
-                                        android:contentDescription="More options"
-                                        android:scaleType="fitCenter"
-                                        app:srcCompat="@drawable/ic_8" />
-                                </androidx.cardview.widget.CardView>
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:padding="8dp"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                                    app:srcCompat="@drawable/ic_8"
+                                    />
 
                                 <TextView
-                                    android:id="@+id/textViewOther"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/margin_small"
                                     android:gravity="center"
-                                    android:text="Other"
-                                    android:textColor="#2E3D6D"
+                                    android:text="More"
+                                    android:textColor="@color/colorPrimaryVariant"
                                     android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"/>
                             </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </androidx.gridlayout.widget.GridLayout>
+
                 </LinearLayout>
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>

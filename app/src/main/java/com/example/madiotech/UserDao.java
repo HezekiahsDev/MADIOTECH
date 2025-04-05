@@ -1,3 +1,4 @@
+//UserDao.java
 package com.example.madiotech;
 
 import androidx.lifecycle.LiveData;
@@ -17,5 +18,6 @@ public interface UserDao {
 
     @Query("DELETE FROM user") // Deletes all user records
     void deleteAllUsers();
+
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,9 +22,25 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.editTextLoginEmailAddress);
         passwordEditText = findViewById(R.id.editTextLoginPassword);
         Button loginButton = findViewById(R.id.LoginPageLogin);
+        TextView registerTextView = findViewById(R.id.textViewClickableRegister);
+        TextView forgotPasswordTextView = findViewById(R.id.textViewClickableForgotPassword);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginButton.setOnClickListener(v -> handleLogin());
+
+        // Set click listener for registerTextView
+        // Navigate to SignupActivity when clicking "Sign Up"
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
+            finish(); // Close LoginActivity
+        });
+        // Navigate to ForgotPasswordActivity when clicking "Forgot Password"
+        forgotPasswordTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
+
 
         loginViewModel.getLoginResult().observe(this, loginResponse -> {
             if (loginResponse != null && "success".equalsIgnoreCase(loginResponse.getStatus())) {

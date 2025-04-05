@@ -3,7 +3,7 @@ package com.example.madiotech;
 import android.os.Bundle;
 
 
-public class ForgotActivity extends BaseActivity {
+public class ForgotPasswordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

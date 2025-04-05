@@ -1,4 +1,5 @@
-package com.example.madiotech;
+//RetrofitClient.java
+package com.example.madiotech.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

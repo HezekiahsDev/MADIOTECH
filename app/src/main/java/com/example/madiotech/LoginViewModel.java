@@ -24,6 +24,12 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository.loginUser(username, password, new UserRepository.LoginCallback() {
             @Override
             public void onSuccess(LoginResponse user) {
+                // Save the login timestamp
+                user.setLoginTimestamp(System.currentTimeMillis());
+
+                // Store the updated user data in the database (Room)
+                new Thread(() -> AppDatabase.getInstance(getApplication()).userDao().insertUser(user)).start();
+
                 loginResult.postValue(user);
             }
 

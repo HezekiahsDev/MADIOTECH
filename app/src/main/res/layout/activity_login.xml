@@ -10,24 +10,22 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:contentDescription="@string/app_name">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="128dp"
             android:orientation="vertical">
-            
-            
+
+
             <TextView
                 android:id="@+id/loginGreeting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="128dp"
+
                 android:text="Login"
                 android:textColor="#2196F3"
                 android:textSize="42sp"
@@ -36,9 +34,9 @@
             <EditText
                 android:id="@+id/editTextLoginEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:autofillHints="emailAddress"
                 android:background="@drawable/edittext_bg"
@@ -48,15 +46,15 @@
                 android:hint="Username"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColorHint="#756c60"
                 android:textColor="#0b0b0b"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textColorHint="#756c60"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextLoginPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
@@ -68,10 +66,10 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColorHint="#756c60"
                 android:textColor="#0b0b0b"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textColorHint="#756c60"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -84,18 +82,19 @@
                 android:textColor="#3B608C"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/LoginPageLogin"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="32dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="Log In"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
                 android:background="@drawable/background_flex"
-                android:textSize="18sp" />
+                android:text="Log In"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewClickableRegister"

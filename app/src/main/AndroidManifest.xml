@@ -28,7 +28,7 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".SignupActivity"/>
         <activity android:name=".DashboardActivity"/>
-        <activity android:name=".ForgotActivity"/>
+        <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".WelcomeBackActivity" />
         <activity android:name=".AirtimeActivity"/>
         <activity android:name=".BuyDataActivity"/>

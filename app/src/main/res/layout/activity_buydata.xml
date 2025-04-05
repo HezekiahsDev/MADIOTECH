@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/activity_bg1"
@@ -21,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
@@ -34,50 +35,106 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spinnerNetworkProviders"
+            <!-- Network Provider Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/spinner_background"
-                android:padding="8dp"/>
-
-            <Spinner
-                android:id="@+id/spinnerBundleType"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/spinner_background"
-                android:paddingStart="8dp"/>
+                android:layout_marginRight="30dp">
 
-            <Spinner
-                android:id="@+id/spinnerBundleAmount"
+                <Spinner
+                    android:id="@+id/spinnerNetworkProviders"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_background"
+                    android:spinnerMode="dropdown"
+                    android:padding="8dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Network Provider"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Bundle Type Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/spinner_background"
-                android:paddingStart="8dp"/>
+                android:layout_marginRight="30dp">
 
-            <EditText
-                android:id="@+id/editTextDataPhonenumber"
+                <Spinner
+                    android:id="@+id/spinnerBundleType"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_background"
+                    android:spinnerMode="dropdown"
+                    android:padding="8dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Bundle Type"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Bundle Amount Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:hint="Phone number"
-                android:inputType="phone"
-                android:background="@drawable/box_bg"
-                android:textColorHint="#756c60"
-                android:textColor="#0b0b0b"
-                android:paddingStart="12dp" />
+                android:layout_marginRight="30dp">
 
+                <Spinner
+                    android:id="@+id/spinnerBundleAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_background"
+                    android:spinnerMode="dropdown"
+                    android:padding="8dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Bundle Amount"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Phone Number Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp">
+
+                <EditText
+                    android:id="@+id/editTextDataPhonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Phone number"
+                    android:inputType="phone"
+                    android:background="@drawable/box_bg"
+                    android:textColorHint="#756c60"
+                    android:textColor="#0b0b0b"
+                    android:paddingStart="12dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Phone Number"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Proceed Purchase Button -->
             <Button
                 android:id="@+id/textViewProceedPurchase"
                 android:layout_width="match_parent"
@@ -91,6 +148,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- Resolve Issues TextView -->
             <TextView
                 android:id="@+id/textViewResolveIssues"
                 android:layout_width="match_parent"

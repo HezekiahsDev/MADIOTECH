@@ -1,7 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MADIOTECH" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!-- Base application theme for Dark Mode -->
+    <style name="Base.Theme.MADIOTECH" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary branding colors -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorSecondary">@color/accent_gold</item>
+
+        <!-- Background and surface colors for dark mode -->
+        <item name="android:colorBackground">@color/dark_blue</item>
+        <item name="colorSurface">@color/black</item>
+
+        <!-- Text colors for contrast in dark mode -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/soft_gold</item>
+
+        <!-- Status Bar and Navigation Bar -->
+        <item name="android:statusBarColor">@color/dark_blue</item>
+        <item name="android:navigationBarColor">@color/primary_blue</item>
+
+        <!-- Button and widget styles -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
     </style>
+
+    <!-- Theme alias for easy switching -->
+    <style name="Theme.MADIOTECH" parent="Base.Theme.MADIOTECH" />
 </resources>

@@ -24,12 +24,24 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onChanged(LoginResponse user) {
                 if (user != null) {
-                    // If user is logged in, go to Dashboard and exit MainActivity
-                    Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-                    startActivity(intent);
-                    finish();
+                    // Check the timestamp to see if 4 hours have passed
+                    long currentTime = System.currentTimeMillis();
+                    long loginTime = user.getLoginTimestamp();
+                    long diffInMillis = currentTime - loginTime;
+
+                    // If 4 hours (14400000 ms) have passed, take user to WelcomeBackActivity
+                    if (diffInMillis >= 14400000) {
+                        Intent intent = new Intent(MainActivity.this, WelcomeBackActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // If less than 4 hours, continue with the normal flow (go to Dashboard)
+                        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 } else {
-                    // If no user is found, load login/signup UI
+                    // If no user is logged in, load login/signup UI
                     setContentView(R.layout.activity_main);
                     setupUI();
                 }

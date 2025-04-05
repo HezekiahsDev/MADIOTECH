@@ -52,6 +52,7 @@ dependencies {
     // Retrofit for networking
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
 
     //view model and livedata
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
@@ -69,6 +70,9 @@ dependencies {
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
 
     implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    //Grid layout
+    implementation ("androidx.gridlayout:gridlayout:1.0.0")
 
     dependencies {
         implementation ("com.squareup.retrofit2:retrofit:2.9.0")

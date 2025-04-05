@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#F4F4F4</color>
+    <!-- Base Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Brand Colors -->
     <color name="primary_blue">#4C6184</color>
-    <color name="accent_gold">#F9C177</color>
     <color name="dark_blue">#2E3D55</color>
+    <color name="accent_gold">#F9C177</color>
     <color name="soft_gold">#F9C177</color>
 
+    <!-- Material Design Colors -->
+    <color name="colorPrimary">@color/primary_blue</color>
+    <color name="colorPrimaryVariant">@color/dark_blue</color>
+    <color name="colorSecondary">@color/accent_gold</color>
 
+    <!-- UI Colors -->
+    <color name="colorBackground">@color/white</color>
+    <color name="colorSurface">@color/white</color>
+
+    <!-- Text Colors -->
+    <color name="colorOnPrimary">@color/white</color>
+    <color name="colorOnSecondary">@color/black</color>
+    <color name="colorOnBackground">@color/black</color>
+    <color name="colorOnSurface">@color/black</color>
 </resources>

@@ -26,6 +26,9 @@ public class LoginResponse {
     @SerializedName("user_level")
     private String userLevel;
 
+    private long loginTimestamp;  // Add this field
+
+
     // Default constructor (Required for Room and Gson)
     public LoginResponse() {
     }
@@ -111,4 +114,13 @@ public class LoginResponse {
     public void setUserLevel(String userLevel) {
         this.userLevel = userLevel;
     }
+    // Getters and Setters
+    public long getLoginTimestamp() {
+        return loginTimestamp;
+    }
+
+    public void setLoginTimestamp(long loginTimestamp) {
+        this.loginTimestamp = loginTimestamp;
+    }
+
 }

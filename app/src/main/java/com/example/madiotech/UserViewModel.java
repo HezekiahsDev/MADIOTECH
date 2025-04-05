@@ -1,3 +1,5 @@
+//UserViewModel.java
+
 package com.example.madiotech;
 
 import android.app.Application;
@@ -10,6 +12,7 @@ import com.example.madiotech.api.LoginResponse;
 public class UserViewModel extends AndroidViewModel {
     private UserDao userDao;
     private LiveData<LoginResponse> userLiveData;
+    private String apiKey;
 
     public UserViewModel(Application application) {
         super(application);
@@ -20,6 +23,13 @@ public class UserViewModel extends AndroidViewModel {
 
     public LiveData<LoginResponse> getUser() {
         return userLiveData;
+    }
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    public String getApiKey() {
+        return apiKey;
     }
     public void logout() {
         new Thread(() -> userDao.deleteAllUsers()).start();

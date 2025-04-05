@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/activity_bg1"
@@ -21,67 +22,123 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            
+
+            <!-- Title Text -->
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginRight="30dp"
                 android:text="Airtime Topup"
                 android:textColor="#3B608C"
-                android:textSize="32sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spinnerNetworkProviders"
+            <!-- Network Providers Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/spinner_background"
-                android:padding="8dp"/>
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="30dp">
 
-            <Spinner
-                android:id="@+id/spinnerAirtimeType"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/spinner_background"
-                android:padding="8dp"/>
+                <Spinner
+                    android:id="@+id/spinnerNetworkProviders"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_background"
+                    android:spinnerMode="dropdown"
+                    android:padding="8dp"/>
 
-            <EditText
-                android:id="@+id/editTextAirtimeAmount"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:hint="Amount (Should be 50.00 above)"
-                android:background="@drawable/box_bg"
-                android:inputType="numberDecimal"
-                android:textColorHint="#756c60"
-                android:textColor="#0b0b0b"
-                android:padding="12dp"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Network Provider"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/editTextAirtimePhonenumber"
+            <!-- Airtime Type Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="30dp"
-                android:hint="Phone number"
-                android:background="@drawable/box_bg"
-                android:inputType="phone"
-                android:textColorHint="#756c60"
-                android:textColor="#0b0b0b"
-                android:padding="12dp"/>
+                android:layout_marginRight="30dp">
 
+                <Spinner
+                    android:id="@+id/spinnerAirtimeType"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_background"
+                    android:spinnerMode="dropdown"
+                    android:padding="8dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Airtime Type"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Airtime Amount EditText -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp">
+
+                <EditText
+                    android:id="@+id/editTextAirtimeAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Amount (Should be 50.00 above)"
+                    android:background="@drawable/box_bg"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#756c60"
+                    android:textColor="#0b0b0b"
+                    android:padding="12dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Airtime Amount"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Phone Number EditText -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="30dp">
+
+                <EditText
+                    android:id="@+id/editTextAirtimePhonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Phone number"
+                    android:background="@drawable/box_bg"
+                    android:inputType="phone"
+                    android:textColorHint="#756c60"
+                    android:textColor="#0b0b0b"
+                    android:padding="12dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Phone Number"
+                    android:textColor="#3B608C"
+                    android:textSize="12sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Purchase Button -->
             <Button
                 android:id="@+id/textViewProceedPurchase"
                 android:layout_width="match_parent"
@@ -95,15 +152,16 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- Resolve Issues Text -->
             <TextView
                 android:id="@+id/textViewResolveIssues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:text="Resolve issues"
                 android:textAlignment="center"
                 android:textColor="#3B608C"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

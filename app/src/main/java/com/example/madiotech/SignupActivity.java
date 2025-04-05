@@ -1,6 +1,7 @@
 package com.example.madiotech;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button registerButton;
     private Retrofit retrofit;
     private ApiService apiService;
+    private View loginSwitchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class SignupActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.editTextPassword);
         confirmPasswordEditText = findViewById(R.id.editTextConfirmPassword);
         registerButton = findViewById(R.id.signupPageSignUp);
+        loginSwitchButton =
+            findViewById(R.id.textClickableViewLogin);
 
         // Initialize Retrofit
         Gson gson = new GsonBuilder().setLenient().create();
@@ -58,6 +62,16 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handleRegistration();
+            }
+        });
+
+        loginSwitchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect the user to the LoginActivity
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();  // Close the current SignupActivity
             }
         });
     }
@@ -121,5 +135,7 @@ public class SignupActivity extends AppCompatActivity {
                 .setPositiveButton("OK", null)
                 .show();
     }
+
+
 
 }
