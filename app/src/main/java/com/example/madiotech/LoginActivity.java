@@ -2,8 +2,10 @@ package com.example.madiotech;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText, passwordEditText;
+    private Button loginButton;
+    private ProgressBar loginProgressBar;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -21,11 +25,14 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameEditText = findViewById(R.id.editTextLoginEmailAddress);
         passwordEditText = findViewById(R.id.editTextLoginPassword);
-        Button loginButton = findViewById(R.id.LoginPageLogin);
+        loginButton = findViewById(R.id.LoginPageLogin);
+        loginProgressBar = findViewById(R.id.loginProgressBar);
         TextView registerTextView = findViewById(R.id.textViewClickableRegister);
         TextView forgotPasswordTextView = findViewById(R.id.textViewClickableForgotPassword);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        // Set click listener for login button
         loginButton.setOnClickListener(v -> handleLogin());
 
         // Set click listener for registerTextView
@@ -35,14 +42,27 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish(); // Close LoginActivity
         });
+
         // Navigate to ForgotPasswordActivity when clicking "Forgot Password"
         forgotPasswordTextView.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
         });
 
+        // Observe loading state
+        loginViewModel.getIsLoading().observe(this, isLoading -> {
+            if (isLoading) {
+                showLoading();
+            } else {
+                hideLoading();
+            }
+        });
 
+        // Observe login result
         loginViewModel.getLoginResult().observe(this, loginResponse -> {
+            // Login process completed, hide loading
+            loginViewModel.setLoading(false);
+
             if (loginResponse != null && "success".equalsIgnoreCase(loginResponse.getStatus())) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, DashboardActivity.class));
@@ -70,6 +90,26 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Show loading and disable button
+        loginViewModel.setLoading(true);
+
+        // Attempt login
         loginViewModel.login(username, password);
+    }
+
+    private void showLoading() {
+        loginButton.setText(""); // Clear button text while loading
+        loginProgressBar.setVisibility(View.VISIBLE);
+        loginButton.setEnabled(false);
+        usernameEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
+    }
+
+    private void hideLoading() {
+        loginButton.setText("Log In");
+        loginProgressBar.setVisibility(View.GONE);
+        loginButton.setEnabled(true);
+        usernameEditText.setEnabled(true);
+        passwordEditText.setEnabled(true);
     }
 }
