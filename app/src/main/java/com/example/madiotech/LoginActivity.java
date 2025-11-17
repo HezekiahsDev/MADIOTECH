@@ -64,10 +64,17 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.setLoading(false);
 
             if (loginResponse != null && "success".equalsIgnoreCase(loginResponse.getStatus())) {
+                // Save username to SharedPreferences
+                getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        .edit()
+                        .putString("KEY_USERNAME", usernameEditText.getText().toString().trim())
+                        .apply();
+
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, DashboardActivity.class));
                 finish();
-            } else {
+            }
+            else {
                 String errorMessage = (loginResponse != null) ? loginResponse.getMessage() : "Login failed. Please try again.";
                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
             }

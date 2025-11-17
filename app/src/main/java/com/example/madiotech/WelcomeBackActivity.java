@@ -36,6 +36,8 @@ public class WelcomeBackActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String username = sharedPreferences.getString(KEY_USERNAME, "User");
         usernameTextView.setText(username);
+        android.util.Log.d("WelcomeBackActivity", "Retrieved username: " + username);
+
 
         // Set OnClickListener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {

@@ -128,6 +128,54 @@ public class DashboardActivity extends BaseActivity {
     }).start();
   }
 
+  private void fetchRecentTransactions() {
+    String apiKey = userViewModel.getApiKey();
+    if (apiKey == null || apiKey.isEmpty()) {
+      return; // Handle case if API key is not available
+    }
+
+    // Construct URL for the transactions endpoint
+    String url = "https://madiotech.com.ng/api/user/transactions.php";
+
+    OkHttpClient client = new OkHttpClient();
+    Request request = new Request.Builder()
+        .url(url)
+        .addHeader("Authorization", apiKey) // Add the API key as the Authorization header
+        .build();
+
+    new Thread(() -> {
+      try {
+        Response response = client.newCall(request).execute();
+        if (response.isSuccessful() && response.body() != null) {
+          String jsonResponse = response.body().string();
+
+          // Parse the response (assuming it's JSON and contains a "transactions" key)
+          JSONObject jsonObject = new JSONObject(jsonResponse);
+
+          // Check the response code
+          int code = jsonObject.optInt("code", -1);
+          if (code == 200) {
+            // Fetch transactions from the response
+            String transactions = jsonObject.optString("transactions", "[]");
+
+            // Update the transactions section in the UI on the main thread
+            runOnUiThread(() -> {
+              // Assuming there is a TextView or RecyclerView to display transactions
+              // Replace this comment with code to update the UI with transactions
+              Toast.makeText(this, "Transactions fetched successfully", Toast.LENGTH_SHORT).show();
+            });
+          } else {
+            // Handle case if the code is not 200 (successful)
+            runOnUiThread(() -> Toast.makeText(this, "Failed to fetch transactions", Toast.LENGTH_SHORT).show());
+          }
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+        runOnUiThread(() -> Toast.makeText(this, "Error fetching transactions", Toast.LENGTH_SHORT).show());
+      }
+    }).start();
+  }
+
   private void showLogoutDialog() {
     // Inflate the custom layout
     View dialogView = getLayoutInflater().inflate(R.layout.confirm_logout, null);

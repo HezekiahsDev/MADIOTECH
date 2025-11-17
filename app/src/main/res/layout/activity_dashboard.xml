@@ -648,8 +648,77 @@
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </androidx.gridlayout.widget.GridLayout>
+                    <!-- Recent Transactions (insert this after servicesGridLayout) -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardRecentTransactions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:layout_marginBottom="@dimen/margin_large"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        android:padding="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!-- Header row with title and "See all" action -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:paddingBottom="8dp">
+
+                                <TextView
+                                    android:id="@+id/textRecentTitle"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Recent transactions"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorPrimaryVariant" />
+
+                                <TextView
+                                    android:id="@+id/textRecentSeeAll"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="See all"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/primary_blue"
+                                    android:padding="4dp"/>
+                            </LinearLayout>
+
+                            <!-- Container to host up to 5 transaction rows -->
+                            <LinearLayout
+                                android:id="@+id/recentTransactionsList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" />
+
+                            <!-- Optional: empty state for the small list -->
+                            <TextView
+                                android:id="@+id/textRecentEmpty"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No recent transactions"
+                                android:textColor="#756c60"
+                                android:textSize="14sp"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:paddingTop="8dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
 
                 </LinearLayout>
+
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
