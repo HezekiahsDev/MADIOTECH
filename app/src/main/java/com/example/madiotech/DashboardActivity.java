@@ -13,23 +13,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import com.example.madiotech.data.Transactions;
+import com.example.madiotech.RecentTransactionAdapter;
+
 public class DashboardActivity extends BaseActivity {
 
   private TextView dashboardName;
   private TextView dashboardWalletBalance;
   private TextView accountLevelTextView;
+
   private UserViewModel userViewModel; // ViewModel to fetch user data
+  private RecyclerView recyclerRecentTransactions;
+  private RecentTransactionAdapter recentTransactionAdapter;
+  private TextView textRecentSeeAll;
+  private TextView textRecentEmpty;
+  private List<Transactions> recentTransactions = new ArrayList<>();
+
 
   // ADDED: Declaration for the transaction history button
   private LinearLayout btnBoxTransactionHistory;
@@ -43,9 +57,11 @@ public class DashboardActivity extends BaseActivity {
     @Override
     public void run() {
       fetchWalletBalance();
-      handler.postDelayed(this, 600000); // Refresh every 10 minutes
+      handler.postDelayed(this, 60000); // Refresh every 1 minutes
     }
   };
+  private RecentTransactionAdapter transactionAdapter;
+  private List<Transactions> transactionList;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +76,12 @@ public class DashboardActivity extends BaseActivity {
     MaterialCardView cardAirtimeTopup = findViewById(R.id.cardAirtimeTopup);
     MaterialCardView cardBuyData = findViewById(R.id.cardBuyData);
     LinearLayout cardFundWallet = findViewById(R.id.cardFundWallet);
-
-    // ADDED: Find the Transaction History LinearLayout by its ID
     btnBoxTransactionHistory = findViewById(R.id.btnBoxTransactionHistory);
+    recyclerRecentTransactions = findViewById(R.id.recyclerRecentTransactions);
+    textRecentEmpty = findViewById(R.id.textRecentEmpty);
+    textRecentSeeAll = findViewById(R.id.textRecentSeeAll);
+
+    setupRecyclerView();
 
     // Initialize ViewModel
     userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
@@ -79,8 +98,10 @@ public class DashboardActivity extends BaseActivity {
         userViewModel.setApiKey(user.getApiKey());
         // Fetch wallet balance immediately after user is available
         fetchWalletBalance();
+        fetchRecentTransactions();
       }
     });
+
 
     // Set OnClickListeners
     logoutTextView.setOnClickListener(v -> showLogoutDialog());
@@ -92,9 +113,20 @@ public class DashboardActivity extends BaseActivity {
     btnBoxTransactionHistory.setOnClickListener(v -> {
       startActivity(new Intent(DashboardActivity.this, TransactionsActivity.class));
     });
+    textRecentSeeAll.setOnClickListener(v -> {
+      startActivity(new Intent(DashboardActivity.this, TransactionsActivity.class));
+    });
+
 
     // Start periodic wallet balance updates
     handler.post(walletBalanceRunnable);
+  }
+
+  private void setupRecyclerView() {
+
+    transactionAdapter = new RecentTransactionAdapter(this, transactionList);
+    recyclerRecentTransactions.setLayoutManager(new LinearLayoutManager(this));
+    recyclerRecentTransactions.setAdapter(transactionAdapter);
   }
 
   private void fetchWalletBalance() {
@@ -141,6 +173,7 @@ public class DashboardActivity extends BaseActivity {
   private void fetchRecentTransactions() {
     String apiKey = userViewModel.getApiKey();
     if (apiKey == null || apiKey.isEmpty()) {
+      updateTransactionsUI(new ArrayList<>());
       return; // Handle case if API key is not available
     }
 
@@ -184,6 +217,9 @@ public class DashboardActivity extends BaseActivity {
         runOnUiThread(() -> Toast.makeText(this, "Error fetching transactions", Toast.LENGTH_SHORT).show());
       }
     }).start();
+  }
+
+  private void updateTransactionsUI(ArrayList<Object> objects) {
   }
 
   private void showLogoutDialog() {

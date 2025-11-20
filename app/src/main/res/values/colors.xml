@@ -18,6 +18,8 @@
     <!-- UI Colors -->
     <color name="colorBackground">#F8F9FB</color>   <!-- Off-white background -->
     <color name="colorSurface">#F1F3F6</color>      <!-- Light surface elevation -->
+    <color name="green_success">#4CAF50</color>
+    <color name="red_error">#D32F2F</color>
 
     <!-- Text Colors -->
     <color name="colorOnPrimary">#FFFFFF</color>     <!-- White text on primary -->

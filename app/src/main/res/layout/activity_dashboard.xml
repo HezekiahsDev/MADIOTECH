@@ -694,14 +694,11 @@
                                     android:padding="4dp"/>
                             </LinearLayout>
 
-                            <!-- Container to host up to 5 transaction rows -->
-                            <LinearLayout
-                                android:id="@+id/recentTransactionsList"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerRecentTransactions"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical" />
+                                android:layout_height="wrap_content" />
 
-                            <!-- Optional: empty state for the small list -->
                             <TextView
                                 android:id="@+id/textRecentEmpty"
                                 android:layout_width="match_parent"
