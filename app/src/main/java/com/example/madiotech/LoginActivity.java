@@ -68,6 +68,9 @@ public class LoginActivity extends AppCompatActivity {
                 getSharedPreferences("MyPrefs", MODE_PRIVATE)
                         .edit()
                         .putString("KEY_USERNAME", usernameEditText.getText().toString().trim())
+                        .putString("KEY_PALMPAY", loginResponse.getPalmpay())
+                        .putString("KEY_9PSB", loginResponse.getNinePsb())
+
                         .apply();
 
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();

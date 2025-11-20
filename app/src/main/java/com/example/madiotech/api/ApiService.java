@@ -3,6 +3,7 @@ package com.example.madiotech.api;
 
 
 import com.example.madiotech.data.FetchDataResponse;
+import com.example.madiotech.data.Transactions;
 import com.example.madiotech.vtu.VtuNetwork;
 
 import java.util.List;
@@ -22,5 +23,9 @@ public interface ApiService {
     Call<List<VtuNetwork>> fetchVtuNetworks(@Header("Authorization") String bearerToken);
     @GET("user/fetch_data.php")
     Call<FetchDataResponse> fetchDataBundles(@Header("Authorization") String bearerToken);
+
+    @GET("user/transactions.php")
+    // The endpoint returns a JSON array of transactions; map it to List<Transactions>
+    Call<List<Transactions>> getTransactions(@Header("Authorization") String apiKey);
 
 }

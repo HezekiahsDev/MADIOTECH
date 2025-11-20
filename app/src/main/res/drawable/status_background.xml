@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This shape creates a rounded rectangle, often called a "pill" or "chip".
+ The high corner radius ensures it's fully rounded.
+ The solid color is just a default placeholder for the layout previewer;
+ the actual color will be set dynamically using a tint in the adapter.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- A large radius value makes the corners fully rounded. -->
+    <corners android:radius="16dp" />
+
+    <!-- A neutral default color for previewing in Android Studio. -->
+    <solid android:color="#A0A0A0" />
+
+</shape>

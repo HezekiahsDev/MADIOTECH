@@ -28,6 +28,12 @@ public class LoginResponse {
 
     private long loginTimestamp;  // Add this field
 
+    @SerializedName("palmpay")
+    private String palmpay;
+
+    @SerializedName("9psb")
+    private String ninePsb;
+
 
     // Default constructor (Required for Room and Gson)
     public LoginResponse() {
@@ -35,9 +41,11 @@ public class LoginResponse {
 
     // Getters and Setters
     @NonNull
+
     public String getUid() {
         return uid;
     }
+
 
     public void setUid(@NonNull String uid) {
         this.uid = uid;
@@ -123,4 +131,19 @@ public class LoginResponse {
         this.loginTimestamp = loginTimestamp;
     }
 
+    public String getPalmpay() {
+        return palmpay;
+    }
+
+    public void setPalmpay(String palmpay) {
+        this.palmpay = palmpay;
+    }
+
+    public String getNinePsb() {
+        return ninePsb;
+    }
+
+    public void setNinePsb(String ninePsb) {
+        this.ninePsb = ninePsb;
+    }
 }

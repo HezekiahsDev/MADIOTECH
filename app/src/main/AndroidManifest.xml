@@ -33,7 +33,9 @@
         <activity android:name=".AirtimeActivity"/>
         <activity android:name=".BuyDataActivity"/>
         <activity android:name=".FundwalletActivity"/>
-        
+        <activity android:name=".TransactionsActivity"/>
+
+
     </application>
 
 </manifest>

@@ -31,6 +31,9 @@ public class DashboardActivity extends BaseActivity {
   private TextView accountLevelTextView;
   private UserViewModel userViewModel; // ViewModel to fetch user data
 
+  // ADDED: Declaration for the transaction history button
+  private LinearLayout btnBoxTransactionHistory;
+
   // Double back to exit variables
   private boolean doubleBackToExitPressedOnce = false;
   private static final int BACK_PRESS_INTERVAL = 2000; // 2 seconds
@@ -58,6 +61,9 @@ public class DashboardActivity extends BaseActivity {
     MaterialCardView cardBuyData = findViewById(R.id.cardBuyData);
     LinearLayout cardFundWallet = findViewById(R.id.cardFundWallet);
 
+    // ADDED: Find the Transaction History LinearLayout by its ID
+    btnBoxTransactionHistory = findViewById(R.id.btnBoxTransactionHistory);
+
     // Initialize ViewModel
     userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
@@ -66,8 +72,8 @@ public class DashboardActivity extends BaseActivity {
       if (user != null) {
         dashboardName.setText(user.getUsername() != null ? user.getUsername() : "Guest");
         accountLevelTextView.setText(
-            String.format("Upgrade Your Account\n(Current Level: %s)",
-                user.getUserLevel() != null ? user.getUserLevel() : "Basic"));
+                String.format("Upgrade Your Account\n(Current Level: %s)",
+                        user.getUserLevel() != null ? user.getUserLevel() : "Basic"));
 
         // Store the API key for later use in wallet balance fetching
         userViewModel.setApiKey(user.getApiKey());
@@ -78,10 +84,14 @@ public class DashboardActivity extends BaseActivity {
 
     // Set OnClickListeners
     logoutTextView.setOnClickListener(v -> showLogoutDialog());
-
     cardFundWallet.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, FundwalletActivity.class)));
     cardAirtimeTopup.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, AirtimeActivity.class)));
     cardBuyData.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, BuyDataActivity.class)));
+
+    // ADDED: Set OnClickListener for the Transaction History button
+    btnBoxTransactionHistory.setOnClickListener(v -> {
+      startActivity(new Intent(DashboardActivity.this, TransactionsActivity.class));
+    });
 
     // Start periodic wallet balance updates
     handler.post(walletBalanceRunnable);
@@ -139,9 +149,9 @@ public class DashboardActivity extends BaseActivity {
 
     OkHttpClient client = new OkHttpClient();
     Request request = new Request.Builder()
-        .url(url)
-        .addHeader("Authorization", apiKey) // Add the API key as the Authorization header
-        .build();
+            .url(url)
+            .addHeader("Authorization", apiKey) // Add the API key as the Authorization header
+            .build();
 
     new Thread(() -> {
       try {

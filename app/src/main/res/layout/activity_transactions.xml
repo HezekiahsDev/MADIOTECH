@@ -69,49 +69,49 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Search & Filter Row: using ConstraintLayout inside so widths are strict and predictable -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchRow"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/cardSummary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+<!--    &lt;!&ndash; Search & Filter Row: using ConstraintLayout inside so widths are strict and predictable &ndash;&gt;-->
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/searchRow"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/cardSummary"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="0dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:queryHint="Search by name, ref..."
-            android:iconifiedByDefault="false"
-            android:background="@drawable/box_bg"
-            android:contentDescription="search transactions"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnFilter"
-            app:layout_constraintHorizontal_bias="0.0" />
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/searchView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="44dp"-->
+<!--            android:layout_marginTop="6dp"-->
+<!--            android:layout_marginBottom="6dp"-->
+<!--            android:queryHint="Search by name, ref..."-->
+<!--            android:iconifiedByDefault="false"-->
+<!--            android:background="@drawable/box_bg"-->
+<!--            android:contentDescription="search transactions"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/btnSearch"-->
+<!--            app:layout_constraintHorizontal_bias="0.0" />-->
 
-        <ImageButton
-            android:id="@+id/btnFilter"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:src="@drawable/ic_filter"
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnSearch"-->
+<!--            android:layout_width="44dp"-->
+<!--            android:layout_height="44dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="6dp"-->
+<!--            android:layout_marginBottom="6dp"-->
+<!--            android:src="@drawable/ic_search"-->
 
-            android:contentDescription="filter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+<!--            android:contentDescription="filter"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <!-- SwipeRefresh + RecyclerView list -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -123,7 +123,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/searchRow"
+        app:layout_constraintTop_toBottomOf="@id/cardSummary"
         app:layout_constraintBottom_toTopOf="@id/textEmpty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

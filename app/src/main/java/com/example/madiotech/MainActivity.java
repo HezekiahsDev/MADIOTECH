@@ -19,29 +19,22 @@ public class MainActivity extends BaseActivity {
         // Initialize ViewModel
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
-        // Check if user exists in SQLite
+        // Check if a user is logged in
         userViewModel.getUser().observe(this, new Observer<LoginResponse>() {
             @Override
             public void onChanged(LoginResponse user) {
-                if (user != null) {
-                    // Check the timestamp to see if 4 hours have passed
-                    long currentTime = System.currentTimeMillis();
-                    long loginTime = user.getLoginTimestamp();
-                    long diffInMillis = currentTime - loginTime;
+                // --- MODIFICATION IS HERE ---
 
-                    // If 4 hours (14400000 ms) have passed, take user to WelcomeBackActivity
-                    if (diffInMillis >= 14400000) {
-                        Intent intent = new Intent(MainActivity.this, WelcomeBackActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        // If less than 4 hours, continue with the normal flow (go to Dashboard)
-                        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                if (user != null) {
+                    // If a user exists in the local database, they are considered logged in.
+                    // The 4-hour check and navigation to WelcomeBackActivity have been removed.
+                    // We now go directly to the Dashboard.
+                    Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                    startActivity(intent);
+                    finish(); // Important: finish MainActivity so the user can't press back to it.
+
                 } else {
-                    // If no user is logged in, load login/signup UI
+                    // If no user is logged in, load the login/signup UI.
                     setContentView(R.layout.activity_main);
                     setupUI();
                 }
