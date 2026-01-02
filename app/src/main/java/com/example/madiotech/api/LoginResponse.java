@@ -34,6 +34,22 @@ public class LoginResponse {
     @SerializedName("9psb")
     private String ninePsb;
 
+    // Notification fields coming from login response
+    @SerializedName("notice1")
+    private String notice1;
+
+    @SerializedName("notice2")
+    private String notice2;
+
+    @SerializedName("notice3")
+    private String notice3;
+
+    @SerializedName("notice4")
+    private String notice4;
+
+    @SerializedName("notice5")
+    private String notice5;
+
 
     // Default constructor (Required for Room and Gson)
     public LoginResponse() {
@@ -146,4 +162,20 @@ public class LoginResponse {
     public void setNinePsb(String ninePsb) {
         this.ninePsb = ninePsb;
     }
+
+    public String getNotice1() { return notice1; }
+    public void setNotice1(String notice1) { this.notice1 = notice1; }
+
+    public String getNotice2() { return notice2; }
+    public void setNotice2(String notice2) { this.notice2 = notice2; }
+
+    public String getNotice3() { return notice3; }
+    public void setNotice3(String notice3) { this.notice3 = notice3; }
+
+    public String getNotice4() { return notice4; }
+    public void setNotice4(String notice4) { this.notice4 = notice4; }
+
+    public String getNotice5() { return notice5; }
+    public void setNotice5(String notice5) { this.notice5 = notice5; }
+
 }

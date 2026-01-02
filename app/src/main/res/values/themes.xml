@@ -9,6 +9,9 @@
         <!-- Background and surface colors -->
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorSurface">@color/colorSurface</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <!-- Opt out of Android Force Dark (API 29+) -->
+        <item name="android:windowBackground">@color/colorBackground</item>
 
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/colorOnBackground</item>

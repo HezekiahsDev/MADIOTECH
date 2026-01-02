@@ -11,7 +11,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.madiotech.data.Transactions;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import java.util.Locale;
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> implements Filterable {
 
     private final Context context;
-    private List<Transactions> transactionList;
+    private final List<Transactions> transactionList;
     private final List<Transactions> transactionListFull; // A copy for filtering
 
     public TransactionAdapter(Context context, List<Transactions> transactionList) {
@@ -44,11 +43,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         // 1. Set Description - Use Html.fromHtml for tags like <span> or <br>
         if (transaction.getDescription() != null) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                holder.tvDescription.setText(Html.fromHtml(transaction.getDescription(), Html.FROM_HTML_MODE_LEGACY));
-            } else {
-                holder.tvDescription.setText(Html.fromHtml(transaction.getDescription()));
-            }
+            holder.tvDescription.setText(Html.fromHtml(transaction.getDescription(), Html.FROM_HTML_MODE_LEGACY));
         }
 
         // 2. Set Date
@@ -88,7 +83,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public int getItemCount() {
         // CHECK THIS LOG
-     Log.d("AdapterDebug", "getItemCount() called. Size is: " + transactionList.size());
+     Log.d("AdapterDebug", "getItemCount() called. Size is: " + (transactionList != null ? transactionList.size() : 0));
         return transactionList != null ? transactionList.size() : 0;
     }
 
@@ -97,7 +92,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void updateList(List<Transactions> newList) {
 
         // CHECK THIS LOG
-        Log.d("AdapterDebug", "updateList() called with " + newList.size() + " items.");
+        Log.d("AdapterDebug", "updateList() called with " + (newList != null ? newList.size() : 0) + " items.");
+
+        if (newList == null) {
+            transactionList.clear();
+            transactionListFull.clear();
+            notifyDataSetChanged();
+            return;
+        }
 
         transactionList.clear();
         transactionList.addAll(newList);
@@ -151,7 +153,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             transactionList.clear();
-            transactionList.addAll((List) results.values);
+            Object values = results.values;
+            if (values instanceof List<?>) {
+                for (Object o : (List<?>) values) {
+                    if (o instanceof Transactions) {
+                        transactionList.add((Transactions) o);
+                    }
+                }
+            }
             notifyDataSetChanged();
         }
     };

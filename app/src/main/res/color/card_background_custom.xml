@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Always use the same custom card background regardless of state/theme -->
+    <item android:color="#FFFFFFFF" />
+</selector>
+

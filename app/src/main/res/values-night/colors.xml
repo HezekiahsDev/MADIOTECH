@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night color mirror: keep same colors as light to avoid visual changes when night qualifiers are used -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Brand Colors -->
+    <color name="primary_blue">#3B4D75</color>
+    <color name="dark_blue">#1F2A44</color>
+    <color name="accent_gold">#D9A441</color>
+    <color name="soft_gold">#F3CC7C</color>
+
+    <!-- Material Design Colors (mirrors) -->
+    <color name="colorPrimary">@color/primary_blue</color>
+    <color name="colorPrimaryVariant">@color/dark_blue</color>
+    <color name="colorSecondary">@color/accent_gold</color>
+
+    <!-- UI Colors -->
+    <color name="colorBackground">#F8F9FB</color>
+    <color name="colorSurface">#F1F3F6</color>
+    <color name="green_success">#4CAF50</color>
+    <color name="red_error">#D32F2F</color>
+
+    <!-- Text Colors -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#1F2A44</color>
+    <color name="colorOnBackground">#1C1C1C</color>
+    <color name="colorOnSurface">#2E2E2E</color>
+
+    <color name="card_bg">#f4f4f4</color>
+</resources>
+
