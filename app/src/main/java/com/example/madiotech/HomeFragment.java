@@ -1,19 +1,14 @@
 package com.example.madiotech;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,7 +29,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -49,11 +43,8 @@ public class HomeFragment extends Fragment {
     private UserViewModel userViewModel;
     private RecyclerView recyclerRecentTransactions;
     private RecentTransactionAdapter recentTransactionAdapter;
-    private TextView textRecentSeeAll;
     private TextView textRecentEmpty;
-    private List<Transactions> recentTransactions = new ArrayList<>();
-
-    private LinearLayout btnBoxTransactionHistory;
+    private final List<Transactions> recentTransactions = new ArrayList<>();
 
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable walletBalanceRunnable = new Runnable() {
@@ -68,9 +59,6 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,10 +78,10 @@ public class HomeFragment extends Fragment {
         MaterialCardView cardAirtimeTopup = view.findViewById(R.id.cardAirtimeTopup);
         MaterialCardView cardBuyData = view.findViewById(R.id.cardBuyData);
         LinearLayout cardFundWallet = view.findViewById(R.id.cardFundWallet);
-        btnBoxTransactionHistory = view.findViewById(R.id.btnBoxTransactionHistory);
+        LinearLayout btnBoxTransactionHistory = view.findViewById(R.id.btnBoxTransactionHistory);
         recyclerRecentTransactions = view.findViewById(R.id.recyclerRecentTransactions);
         textRecentEmpty = view.findViewById(R.id.textRecentEmpty);
-        textRecentSeeAll = view.findViewById(R.id.textRecentSeeAll);
+        TextView textRecentSeeAll = view.findViewById(R.id.textRecentSeeAll);
 
         setupRecyclerView();
 
@@ -121,12 +109,8 @@ public class HomeFragment extends Fragment {
         cardAirtimeTopup.setOnClickListener(v -> startActivity(new Intent(getActivity(), AirtimeActivity.class)));
         cardBuyData.setOnClickListener(v -> startActivity(new Intent(getActivity(), BuyDataActivity.class)));
 
-        btnBoxTransactionHistory.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), TransactionsActivity.class));
-        });
-        textRecentSeeAll.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), TransactionsActivity.class));
-        });
+        btnBoxTransactionHistory.setOnClickListener(v -> startActivity(new Intent(getActivity(), TransactionsActivity.class)));
+        textRecentSeeAll.setOnClickListener(v -> startActivity(new Intent(getActivity(), TransactionsActivity.class)));
 
         // Start periodic wallet balance updates
         handler.post(walletBalanceRunnable);
@@ -160,7 +144,7 @@ public class HomeFragment extends Fragment {
                     if (code == 200) {
                         String walletBalance = jsonObject.optString("wallet_balance", "₦0.00");
                         if (getActivity() != null) {
-                            getActivity().runOnUiThread(() -> dashboardWalletBalance.setText("₦" + walletBalance));
+                            getActivity().runOnUiThread(() -> dashboardWalletBalance.setText(String.format("₦%s", walletBalance)));
                         }
                     } else {
                         if (getActivity() != null) {
@@ -169,7 +153,7 @@ public class HomeFragment extends Fragment {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                android.util.Log.e("HomeFragment", "Error fetching wallet balance", e);
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> dashboardWalletBalance.setText("--"));
                 }
@@ -192,7 +176,7 @@ public class HomeFragment extends Fragment {
 
         apiService.getTransactions(bearer).enqueue(new Callback<List<Transactions>>() {
             @Override
-            public void onResponse(Call<List<Transactions>> call, Response<List<Transactions>> response) {
+            public void onResponse(@androidx.annotation.NonNull Call<List<Transactions>> call, @androidx.annotation.NonNull Response<List<Transactions>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Transactions> list = response.body();
                     // Limit to maximum 5 recent transactions
@@ -219,8 +203,8 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Transactions>> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(@androidx.annotation.NonNull Call<List<Transactions>> call, @androidx.annotation.NonNull Throwable t) {
+                android.util.Log.e("HomeFragment", "Failed to fetch transactions", t);
                 recentTransactions.clear();
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
@@ -234,7 +218,7 @@ public class HomeFragment extends Fragment {
 
     // Toggle recent transactions UI when data changes
     private void updateRecentUi() {
-        if (recentTransactions == null || recentTransactions.isEmpty()) {
+        if (recentTransactions.isEmpty()) {
             textRecentEmpty.setVisibility(View.VISIBLE);
             recyclerRecentTransactions.setVisibility(View.GONE);
         } else {

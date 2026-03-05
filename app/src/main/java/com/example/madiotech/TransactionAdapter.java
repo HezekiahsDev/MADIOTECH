@@ -83,29 +83,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public int getItemCount() {
         // CHECK THIS LOG
-     Log.d("AdapterDebug", "getItemCount() called. Size is: " + (transactionList != null ? transactionList.size() : 0));
-        return transactionList != null ? transactionList.size() : 0;
+     Log.d("AdapterDebug", "getItemCount() called. Size is: " + transactionList.size());
+        return transactionList.size();
     }
 
-
-    // Method to update the list from the Activity and refresh the view
     public void updateList(List<Transactions> newList) {
-
-        // CHECK THIS LOG
-        Log.d("AdapterDebug", "updateList() called with " + (newList != null ? newList.size() : 0) + " items.");
-
-        if (newList == null) {
-            transactionList.clear();
-            transactionListFull.clear();
-            notifyDataSetChanged();
-            return;
-        }
-
         transactionList.clear();
         transactionList.addAll(newList);
+
         transactionListFull.clear();
         transactionListFull.addAll(newList);
-        notifyDataSetChanged(); // This tells the RecyclerView to redraw itself
+
+        notifyDataSetChanged();
     }
 
     // ViewHolder class that holds the views for a single item

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.HideReturnsTransformationMethod;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText, passwordEditText;
     private Button loginButton;
     private ProgressBar loginProgressBar;
+    private TextView loginPasswordToggle;
+    private boolean isPasswordVisible = false;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.editTextLoginPassword);
         loginButton = findViewById(R.id.LoginPageLogin);
         loginProgressBar = findViewById(R.id.loginProgressBar);
+        loginPasswordToggle = findViewById(R.id.textViewLoginPasswordToggle);
         TextView registerTextView = findViewById(R.id.textViewClickableRegister);
         TextView forgotPasswordTextView = findViewById(R.id.textViewClickableForgotPassword);
 
@@ -49,6 +54,20 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Wire password toggle
+        loginPasswordToggle.setOnClickListener(v -> {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                loginPasswordToggle.setText("hide");
+            } else {
+                passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                loginPasswordToggle.setText("show");
+            }
+            // Move cursor to end
+            passwordEditText.setSelection(passwordEditText.getText().length());
+        });
+
         // Observe loading state
         loginViewModel.getIsLoading().observe(this, isLoading -> {
             if (isLoading) {
@@ -64,12 +83,12 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.setLoading(false);
 
             if (loginResponse != null && "success".equalsIgnoreCase(loginResponse.getStatus())) {
-                // Save username to SharedPreferences
-                getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                // Save username and payment details to SharedPreferences using centralized keys and trimming
+                getSharedPreferences(PrefsKeys.PREFS_NAME, MODE_PRIVATE)
                         .edit()
-                        .putString("KEY_USERNAME", usernameEditText.getText().toString().trim())
-                        .putString("KEY_PALMPAY", loginResponse.getPalmpay())
-                        .putString("KEY_9PSB", loginResponse.getNinePsb())
+                        .putString(PrefsKeys.KEY_USERNAME, usernameEditText.getText().toString().trim())
+                        .putString(PrefsKeys.KEY_PALMPAY, StringUtils.safeTrim(loginResponse.getPalmpay()))
+                        .putString(PrefsKeys.KEY_9PSB, StringUtils.safeTrim(loginResponse.getNinePsb()))
 
                         .apply();
 

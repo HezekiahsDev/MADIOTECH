@@ -4,12 +4,10 @@ package com.example.madiotech;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -136,21 +134,16 @@ public class TransactionsActivity extends AppCompatActivity {
         Log.d(API_LOG_TAG, "--> Sending Request to fetch transactions...");
         apiService.getTransactions(bearerToken).enqueue(new Callback<List<Transactions>>() {
             @Override
-            public void onResponse(Call<List<Transactions>> call, Response<List<Transactions>> response) {
+            public void onResponse(@androidx.annotation.NonNull Call<List<Transactions>> call, @androidx.annotation.NonNull Response<List<Transactions>> response) {
                 swipeRefresh.setRefreshing(false);
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d(API_LOG_TAG, "SUCCESS: Received " + response.body().size() + " transactions.");
 
                     // *** THE CRITICAL FIX IS HERE ***
-                    // 1. Update the Activity's list. This is the single source of truth.
-                    transactionList.clear();
-                    transactionList.addAll(response.body());
+                    // 1. Update the Adapter's list. This ensures both the display list and the filter list are updated.
+                    transactionAdapter.updateList(response.body());
 
-                    // 2. Notify the adapter that the underlying data has changed completely.
-                    //    We don't need a separate updateList method in the adapter if they share the same list reference.
-                    transactionAdapter.notifyDataSetChanged();
-
-                    // 3. Update the UI based on the new state of the list.
+                    // 2. Update the UI based on the new state of the list.
                     updateUiState();
 
                 } else {
@@ -159,7 +152,7 @@ public class TransactionsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Transactions>> call, Throwable t) {
+            public void onFailure(@androidx.annotation.NonNull Call<List<Transactions>> call, @androidx.annotation.NonNull Throwable t) {
                 swipeRefresh.setRefreshing(false);
                 Log.e(API_LOG_TAG, "API call failed completely.", t);
                 Toast.makeText(TransactionsActivity.this, "Network error. Please try again.", Toast.LENGTH_SHORT).show();
@@ -183,9 +176,9 @@ public class TransactionsActivity extends AppCompatActivity {
 
     private void handleApiError(Response<List<Transactions>> response) {
         String errorBody = "Unknown error";
-        try {
-            if (response.errorBody() != null) {
-                errorBody = response.errorBody().string();
+        try (okhttp3.ResponseBody responseBody = response.errorBody()) {
+            if (responseBody != null) {
+                errorBody = responseBody.string();
             }
         } catch (IOException e) {
             Log.e(API_LOG_TAG, "Error reading error body", e);

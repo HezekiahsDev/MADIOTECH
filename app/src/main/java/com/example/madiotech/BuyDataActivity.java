@@ -248,6 +248,9 @@ public class BuyDataActivity extends BaseActivity {
 
     // Show server message in a dialog (used for purchase responses/errors)
     private void showServerMessageDialog(String title, String message) {
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
         if (message == null || message.isEmpty()) message = "No message returned from server.";
         new AlertDialog.Builder(BuyDataActivity.this)
                 .setTitle(title)

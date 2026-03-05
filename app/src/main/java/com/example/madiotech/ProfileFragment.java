@@ -133,6 +133,9 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showLogoutDialog() {
+        if (getActivity() == null || getActivity().isFinishing() || getActivity().isDestroyed()) {
+            return;
+        }
         View dialogView = getLayoutInflater().inflate(R.layout.confirm_logout, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

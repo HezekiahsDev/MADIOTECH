@@ -64,6 +64,9 @@ public class BaseActivity extends AppCompatActivity {
 
     // Method to show the popup dialog for no internet connectivity
     protected void showNoInternetDialog() {
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("No Internet Connection");
         builder.setMessage("Please check your internet connection and try again.");

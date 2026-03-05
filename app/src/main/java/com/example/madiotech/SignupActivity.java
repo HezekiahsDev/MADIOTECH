@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.HideReturnsTransformationMethod;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +21,9 @@ import com.example.madiotech.api.RegisterRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +38,10 @@ public class SignupActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private ApiService apiService;
     private View loginSwitchButton;
+    private TextView passwordToggleTextView, confirmPasswordToggleTextView;
+    private ProgressBar signupProgressBar;
+    private boolean isPasswordVisible = false;
+    private boolean isConfirmPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,9 @@ public class SignupActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.signupPageSignUp);
         loginSwitchButton =
             findViewById(R.id.textClickableViewLogin);
+        passwordToggleTextView = findViewById(R.id.textViewPasswordToggle);
+        confirmPasswordToggleTextView = findViewById(R.id.textViewConfirmPasswordToggle);
+        signupProgressBar = findViewById(R.id.signupProgressBar);
 
         // Initialize Retrofit
         Gson gson = new GsonBuilder().setLenient().create();
@@ -74,44 +88,85 @@ public class SignupActivity extends AppCompatActivity {
                 finish();  // Close the current SignupActivity
             }
         });
+
+        // Password toggle listeners
+        passwordToggleTextView.setOnClickListener(v -> {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                passwordToggleTextView.setText("hide");
+            } else {
+                passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                passwordToggleTextView.setText("show");
+            }
+            // Move cursor to end
+            passwordEditText.setSelection(passwordEditText.getText().length());
+        });
+
+        confirmPasswordToggleTextView.setOnClickListener(v -> {
+            isConfirmPasswordVisible = !isConfirmPasswordVisible;
+            if (isConfirmPasswordVisible) {
+                confirmPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                confirmPasswordToggleTextView.setText("hide");
+            } else {
+                confirmPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                confirmPasswordToggleTextView.setText("show");
+            }
+            confirmPasswordEditText.setSelection(confirmPasswordEditText.getText().length());
+        });
     }
 
     private void handleRegistration() {
-        String firstName = firstNameEditText.getText().toString().trim();
-        String lastName = lastNameEditText.getText().toString().trim();
-        String fulname = firstName + " " + lastName;
-        String username = usernameEditText.getText().toString().trim();
-        String refer = referEditText.getText().toString().trim();
-        String email = emailEditText.getText().toString().trim();
-        String phone = phoneEditText.getText().toString().trim();
-        String pass1 = passwordEditText.getText().toString().trim();
-        String pass2 = confirmPasswordEditText.getText().toString().trim();
+         String firstName = firstNameEditText.getText().toString().trim();
+         String lastName = lastNameEditText.getText().toString().trim();
+         String fulname = firstName + " " + lastName;
+         String username = usernameEditText.getText().toString().trim();
+         String refer = referEditText.getText().toString().trim();
+         String email = emailEditText.getText().toString().trim();
+         String phone = phoneEditText.getText().toString().trim();
+         String pass1 = passwordEditText.getText().toString().trim();
+         String pass2 = confirmPasswordEditText.getText().toString().trim();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty() || phone.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
-            Toast.makeText(SignupActivity.this, "Please fill all required fields", Toast.LENGTH_SHORT).show();
-            return;
-        }
+         if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty() || phone.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
+             Toast.makeText(SignupActivity.this, "Please fill all required fields", Toast.LENGTH_SHORT).show();
+             return;
+         }
 
-        if (!pass1.equals(pass2)) {
-            Toast.makeText(SignupActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-            return;
-        }
+         if (!pass1.equals(pass2)) {
+             Toast.makeText(SignupActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+             return;
+         }
 
-        RegisterRequest request = new RegisterRequest(fulname, username, refer, email, phone, pass1, pass2);
-        Call<String> call = apiService.registerUser(request);
+         // Show loading state (after validation)
+        showLoading();
 
-        call.enqueue(new Callback<String>() {
+         RegisterRequest request = new RegisterRequest(fulname, username, refer, email, phone, pass1, pass2);
+         Call<ResponseBody> call = apiService.registerUser(request);
+
+         call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    String serverResponse = response.body();
-                    Log.d("API_RESPONSE", "Response: " + serverResponse);
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                // Hide loading regardless
+                hideLoading();
+                if (response.isSuccessful()) {
+                    try (ResponseBody body = response.body()) {
+                        if (body != null) {
+                            String serverResponse = body.string();
+                            Log.d("API_RESPONSE", "Raw Response: " + serverResponse);
 
-                    if ("success".equalsIgnoreCase(serverResponse.trim())) {
-                        Toast.makeText(SignupActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        showErrorDialog("Registration failed: " + serverResponse);
+                            if ("success".equalsIgnoreCase(serverResponse.trim())) {
+                                Toast.makeText(SignupActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                showErrorDialog("Registration failed: " + serverResponse);
+                            }
+                        } else {
+                            showErrorDialog("Invalid response from server.");
+                            Log.e("API_RESPONSE", "Invalid Response Code: " + response.code());
+                        }
+                    } catch (IOException e) {
+                        Log.e("API_RESPONSE", "Error reading response body", e);
+                        showErrorDialog("Registration failed: unable to read server response.");
                     }
                 } else {
                     showErrorDialog("Invalid response from server.");
@@ -120,15 +175,46 @@ public class SignupActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                hideLoading();
                 showErrorDialog("Registration failed: " + t.getMessage());
                 Log.e("API_ERROR", "Error: ", t);
             }
         });
     }
 
+    private void showLoading() {
+        registerButton.setText("");
+        signupProgressBar.setVisibility(View.VISIBLE);
+        registerButton.setEnabled(false);
+        firstNameEditText.setEnabled(false);
+        lastNameEditText.setEnabled(false);
+        usernameEditText.setEnabled(false);
+        referEditText.setEnabled(false);
+        emailEditText.setEnabled(false);
+        phoneEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
+        confirmPasswordEditText.setEnabled(false);
+    }
+
+    private void hideLoading() {
+        registerButton.setText("Sign Up");
+        signupProgressBar.setVisibility(View.GONE);
+        registerButton.setEnabled(true);
+        firstNameEditText.setEnabled(true);
+        lastNameEditText.setEnabled(true);
+        usernameEditText.setEnabled(true);
+        referEditText.setEnabled(true);
+        emailEditText.setEnabled(true);
+        phoneEditText.setEnabled(true);
+        passwordEditText.setEnabled(true);
+        confirmPasswordEditText.setEnabled(true);
+    }
 
     private void showErrorDialog(String message) {
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
         new AlertDialog.Builder(this)
                 .setTitle("Registration Error")
                 .setMessage(message)

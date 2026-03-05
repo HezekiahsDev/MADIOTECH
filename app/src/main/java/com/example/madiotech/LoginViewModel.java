@@ -42,6 +42,18 @@ public class LoginViewModel extends AndroidViewModel {
                 // Store the updated user data in the database (Room)
                 new Thread(() -> AppDatabase.getInstance(getApplication()).userDao().insertUser(user)).start();
 
+                // Sync important fields to SharedPreferences so UI components relying on prefs get the data
+                try {
+                    getApplication().getSharedPreferences(PrefsKeys.PREFS_NAME, 0)
+                            .edit()
+                            .putString(PrefsKeys.KEY_PALMPAY, StringUtils.safeTrim(user.getPalmpay()))
+                            .putString(PrefsKeys.KEY_9PSB, StringUtils.safeTrim(user.getNinePsb()))
+                            .apply();
+                } catch (Exception e) {
+                    // swallow any prefs exceptions to avoid breaking login flow
+                    e.printStackTrace();
+                }
+
                 loginResult.postValue(user);
                 // Note: We don't set isLoading to false here because
                 // that will be handled in the Activity after observing the result

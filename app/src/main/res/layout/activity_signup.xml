@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".MainActivity">
+    tools:context=".SignupActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -119,35 +119,71 @@
                 android:textColor="@color/colorOnBackground"
                 android:textColorHint="#756c60" />
 
-            <EditText
-                android:id="@+id/editTextPassword"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/edittext_bg"
-                android:drawableStart="@drawable/password"
-                android:drawablePadding="10dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:textColor="@color/colorOnBackground"
-                android:textColorHint="#756c60" />
+                android:layout_marginTop="16dp">
 
-            <EditText
-                android:id="@+id/editTextConfirmPassword"
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_bg"
+                    android:drawableStart="@drawable/password"
+                    android:drawablePadding="10dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="64dp"
+                    android:textColor="@color/colorOnBackground"
+                    android:textColorHint="#756c60" />
+
+                <TextView
+                    android:id="@+id/textViewPasswordToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end|center_vertical"
+                    android:gravity="center"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:text="show"
+                    android:textColor="@color/primary_blue"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/edittext_bg"
-                android:drawableStart="@drawable/password"
-                android:drawablePadding="10dp"
-                android:hint="Confirm password"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:textColor="@color/colorOnBackground"
-                android:textColorHint="#756c60" />
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/editTextConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_bg"
+                    android:drawableStart="@drawable/password"
+                    android:drawablePadding="10dp"
+                    android:hint="Confirm password"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="64dp"
+                    android:textColor="@color/colorOnBackground"
+                    android:textColorHint="#756c60" />
+
+                <TextView
+                    android:id="@+id/textViewConfirmPasswordToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end|center_vertical"
+                    android:gravity="center"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:text="show"
+                    android:textColor="@color/primary_blue"
+                    android:textStyle="bold" />
+            </FrameLayout>
 
             <EditText
                 android:id="@+id/editTextReferalCode"
@@ -165,32 +201,46 @@
                 android:textColorHint="#756c60" />
 
             <!-- ✅ Converted Button to MaterialButton -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/signupPageSignUp"
-                style="@style/Widget.MaterialComponents.Button"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginHorizontal="32dp"
-                android:text="Sign Up"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorOnSecondary"
-                app:backgroundTint="@color/colorSecondary"
-                app:cornerRadius="16dp"
-                android:elevation="6dp"
-                android:paddingVertical="12dp" />
+                android:layout_marginHorizontal="32dp">
 
-            <TextView
-                android:id="@+id/textClickableViewLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Already have an account? Login"
-                android:textAlignment="center"
-                android:textColor="@color/primary_blue"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signupPageSignUp"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Up"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorOnSecondary"
+                    app:backgroundTint="@color/colorSecondary"
+                    app:cornerRadius="16dp"
+                    android:elevation="6dp"
+                    android:paddingVertical="12dp" />
+
+                <ProgressBar
+                    android:id="@+id/signupProgressBar"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:indeterminateTint="@color/colorOnSecondary" />
+
+            </FrameLayout>
+
+             <TextView
+                 android:id="@+id/textClickableViewLogin"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="18dp"
+                 android:text="Already have an account? Login"
+                 android:textAlignment="center"
+                 android:textColor="@color/primary_blue"
+                 android:textSize="18sp"
+                 android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

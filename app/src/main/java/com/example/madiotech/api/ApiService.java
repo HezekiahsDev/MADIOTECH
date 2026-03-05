@@ -20,7 +20,7 @@ public interface ApiService {
     @POST("user/login.php")
     Call<LoginResponse> loginUser(@Body LoginRequest request);
     @POST("api/user/register.php")
-    Call<String> registerUser(@Body RegisterRequest request);
+    Call<ResponseBody> registerUser(@Body RegisterRequest request);
     @GET("user/fetch_vtu.php")
     Call<List<VtuNetwork>> fetchVtuNetworks(@Header("Authorization") String bearerToken);
     @GET("user/fetch_data.php")
